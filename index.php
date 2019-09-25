@@ -1,5 +1,11 @@
 <?php 
 include 'includes/settings.php';
+session_start();
+
+if(!isset($_SESSION['login_user'])){
+    header("location:login.php");
+    die();
+ }
 ?>
 <!doctype html>
 <html lang="en">
@@ -24,6 +30,7 @@ include 'includes/settings.php';
       <a class="navbar-brand col-sm-3 col-md-2 mr-0" href="#"><?php echo $site_name ?></a>
       <ul class="navbar-nav px-3">
         <li class="nav-item text-nowrap">
+        <a href = "logout.php">Logga ut</a>
         </li>
       </ul>
     </nav>
@@ -34,25 +41,25 @@ include 'includes/settings.php';
           <div class="sidebar-sticky">
             <ul class="nav flex-column">
               <li class="nav-item">
-                <a class="nav-link active" href="#">
-                  <span data-feather="home"></span>Test1<span class="sr-only"></span>
-                </a>
-              </li>
-              <li class="nav-item">
                 <a class="nav-link" href="#">
-                  <span data-feather="file"></span>
-                  Test2
-                </a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="#">
-                  <span data-feather="shopping-cart"></span>
-                  Test3
+                  <span data-feather="home"></span>Dashboard<span class="sr-only"></span>
                 </a>
               </li>
               <li class="nav-item">
                 <a class="nav-link" href="#">
                   <span data-feather="users"></span>
+                  Användare
+                </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#">
+                  <span data-feather="layers"></span>
+                  Media
+                </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#">
+                  <span data-feather="file"></span>
                   Test4
                 </a>
               </li>
@@ -75,11 +82,20 @@ include 'includes/settings.php';
         <main role="main" class="col-md-9 ml-sm-auto col-lg-10 pt-3 px-4">
           <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pb-2 mb-3 border-bottom">
             <h1 class="h2">Dashboard</h1>
+                <div>
+                </div>
           </div>
 
-          <canvas class="my-4" id="myChart" width="900" height="380"></canvas>
-
-          <h2>Section title</h2>
+          <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pb-2 mb-3 border-bottom">
+            <h1 class="h2">Användare</h1>
+                <div>
+                </div>
+          </div>
+          <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pb-2 mb-3 border-bottom">
+            <h1 class="h2">Media</h1>
+                <div>
+                </div>
+          </div>
         </main>
       </div>
     </div>
