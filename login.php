@@ -48,7 +48,7 @@
       <input type="text" id="inputPersnr" name="inputPersnr" class="form-control" placeholder="20001212XXXX" required autofocus>
       <br>
       <button class="btn btn-lg btn-primary btn-block" type="submit" value="Submit">Logga in</button>
-      <p class="mt-5 mb-3 text-muted">&copy; 2019</p>
+      <p class="mt-5 mb-3 text-muted">NTI Gymnasiet - Bibliotek &copy;2019</p>
     </form>
   </body>
 </html>
