@@ -156,7 +156,64 @@ if(!isset($_SESSION['login_user'])){
                 </select>
                 <br>
                 <br>
-                Genre:
+                Författare:
+                <select name="author_id" id="author_id">
+                    <option value="">Inget</option>
+                    <?php
+                    include('includes/dbh.inc.php');
+                    $sql = "SELECT author_id, author_fname,author_lname FROM authors";
+                    $result = $conn->query($sql);
+                    if ($result->num_rows > 0) {
+                    while($row = $result->fetch_assoc()) {
+                        echo "<option value='". $row["author_id"] ."'>". $row["author_fname"]." ". $row["author_lname"]."</option>";
+                    }
+                    echo "</table>";
+                    } else { echo "0 results"; }
+                    $conn->close();
+                    ?>
+                </select>
+                <br>
+                <br>
+                
+                Berättare:
+    
+                <select name="narrator_id" id="narrator_id">
+                    <option value="">Inget</option>
+                    <?php
+                    include('includes/dbh.inc.php');
+                    $sql = "SELECT narrator_id, narrator_fname,narrator_lname FROM narrators";
+                    $result = $conn->query($sql);
+                    if ($result->num_rows > 0) {
+                    while($row = $result->fetch_assoc()) {
+                        echo "<option value='". $row["narrator_id"] ."'>". $row["narrator_fname"]." ". $row["narrator_lname"]."</option>";
+                    }
+                    echo "</table>";
+                    } else { echo "0 results"; }
+                    $conn->close();
+                    ?>
+                </select>
+                <br>
+                <br>
+                Director:
+    
+                <select name="director_id" id="director_id">
+                    <option value="">Inget</option>
+                    <?php
+                    include('includes/dbh.inc.php');
+                    $sql = "SELECT director_id, director_fname,director_lname FROM directors";
+                    $result = $conn->query($sql);
+                    if ($result->num_rows > 0) {
+                    while($row = $result->fetch_assoc()) {
+                        echo "<option value='". $row["director_id"] ."'>". $row["director_fname"]." ". $row["director_lname"]."</option>";
+                    }
+                    echo "</table>";
+                    } else { echo "0 results"; }
+                    $conn->close();
+                    ?>
+                </select>
+                <br>
+                <br>
+                Genre
                 <select name="genre_id" id="genre_id">
                     <?php
                     include('includes/dbh.inc.php');
@@ -175,6 +232,8 @@ if(!isset($_SESSION['login_user'])){
                 <br>
                 <input type="submit" value="Lägg till">
             </form>
+            <br>
+            <br>
             <br>
 
             <h6>Lägg till en genre:</h6>
