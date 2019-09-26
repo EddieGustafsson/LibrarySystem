@@ -156,7 +156,7 @@ if(!isset($_SESSION['login_user'])){
                 <input type="date" name="end_date" id="end_date"><br><br>
 
                 <p>Serienummer:</p>
-                <input type="text" name="item_id" id="item_id" maxlength="11"><br><br>
+                <input type="text" name="item_id" id="item_id" placeholder="00870006044" maxlength="11"><br><br>
                 
                 <input type="submit" value="Lägg till lån">
                 <br><br>
@@ -170,7 +170,7 @@ if(!isset($_SESSION['login_user'])){
             <h6>Avsluta ett lån:</h6>
                 <form action="http://<?php echo $domain_name ?>/LibrarySystem/includes/endloan.php">
                     <p>Serienummer:</p>
-                    <input type="text" name="item_id" id="item_id" maxlength="11"><br><br>
+                    <input type="text" name="item_id" id="item_id" maxlength="11" placeholder="00870006044"><br><br>
                     
                     <input type="submit" value="Avsluta lån">
                 </form>
