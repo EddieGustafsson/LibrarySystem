@@ -14,4 +14,4 @@ You can also:
   - Access an archive with borrow history.
 
 # Credits
-[Bootstrap]: <http://twitter.github.com/bootstrap/>
+Bootstrap - https://getbootstrap.com/
