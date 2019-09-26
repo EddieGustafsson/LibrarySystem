@@ -169,6 +169,17 @@ if(!isset($_SESSION['login_user'])){
           </div>
           <br>
           <br>
+
+          <h6>Avsluta ett lån:</h6>
+            <form action="http://<?php echo $domain_name ?>/LibrarySystem/includes/endloan.php">
+                <p>Serienummer:</p>
+                <input type="text" name="item_id" id="item_id"><br><br>
+                
+                <input type="submit" value="Avsluta lån">
+            </form>
+            <br>
+            <br>
+
           <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pb-2 mb-3 border-bottom">
             <h1 class="h2">Användare</h1>
           </div>
