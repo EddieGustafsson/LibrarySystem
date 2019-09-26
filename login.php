@@ -7,7 +7,7 @@
       
       $persnr = mysqli_real_escape_string($conn,$_POST['inputPersnr']);
       
-      $sql = "SELECT user_id FROM users WHERE user_id = '$persnr'";
+      $sql = "SELECT user_id FROM users WHERE user_id = '$persnr' AND role_id='4'";
       $result = mysqli_query($conn,$sql);
       $row = mysqli_fetch_array($result,MYSQLI_ASSOC);
       
@@ -18,7 +18,8 @@
          $_SESSION['login_user'] = $persnr;
          header("location: index.php");
       }else {
-         $error = "Your Login Name or Password is invalid";
+         $error = "Your Code is wrong is invalid";
+         header("location: ./index.php?userLogin=Error?reason=NotAdmin");
       }
    }
 ?>
