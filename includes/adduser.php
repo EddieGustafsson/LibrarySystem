@@ -8,7 +8,7 @@
 
     $sql = "INSERT INTO users (user_id, firstname, lastname, role_id, date) VALUES ('$user_id', '$firstName', '$lastName','$role_id', '$date')";
     if(mysqli_query($conn, $sql)){
-        header("location: ./index.php?userAdd=Success");
+        header("location: ../index.php?userAdd=Success");
     } else{
         echo "ERROR: Could not able to execute $sql. " . mysqli_error($conn);
     }

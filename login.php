@@ -45,7 +45,7 @@
     <form class="form-signin" action = "" method = "post">
       <h1 class="h3 mb-3 font-weight-normal">Logga in till ditt konto</h1>
       <label for="inputEmail" class="sr-only" >Personnummer</label>
-      <input type="text" id="inputPersnr" name="inputPersnr" class="form-control" placeholder="20001212XXXX" required autofocus>
+      <input type="password" id="inputPersnr" name="inputPersnr" class="form-control" placeholder="20001212XXXX" maxlength="12" required autofocus>
       <br>
       <button class="btn btn-lg btn-primary btn-block" type="submit" value="Submit">Logga in</button>
       <p class="mt-5 mb-3 text-muted">NTI Gymnasiet - Bibliotek &copy;2019</p>

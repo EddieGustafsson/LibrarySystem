@@ -7,23 +7,30 @@
     $is_borrowed = 1;
 
     $d_is_borrowed = "SELECT is_borrowed FROM media WHERE item_id='$item_id'";
-    $result = $conn->query($d_is_borrowed);
+    $result = mysqli_query($conn, $d_is_borrowed);
+    $resultCheck = mysqli_num_rows($result);
 
-        if($result = 0){
-            $sql = "INSERT INTO borrowed (user_id, item_id, start_date, end_date) VALUES ('$user_id', '$item_id', '$start_date', '$end_date')";
-            if(mysqli_query($conn, $sql)){
-            } else{
-                echo "ERROR: Could not able to execute $sql. " . mysqli_error($conn);
+    if($resultCheck > 0){
+        while($row = mysqli_fetch_assoc($result)){
+            if($row['is_borrowed'] == '0'){
+                $sql = "INSERT INTO borrowed (user_id, item_id, start_date, end_date) VALUES ('$user_id', '$item_id', '$start_date', '$end_date')";
+                if(mysqli_query($conn, $sql)){
+                } else{
+                    echo "ERROR: Could not able to execute $sql. " . mysqli_error($conn);
+                }
+                
+                $sql3 = "UPDATE `media` SET `is_borrowed` = '1' WHERE `media`.`item_id` = '$item_id'";
+                if(mysqli_query($conn, $sql3)){
+                    header("location: ../index.php?loanAdd=Success");
+                } else{
+                    echo "ERROR: Could not able to execute $sql3. " . mysqli_error($conn);
+                }
+            } else {
+                header("location: ../index.php?loanAdd=ERROR?reason=NotAvailable");
             }
-            
-            $sql3 = "UPDATE `media` SET `is_borrowed` = '1' WHERE `media`.`item_id` = '$item_id'";
-            if(mysqli_query($conn, $sql3)){
-                header("location: ../index.php?loanAdd=Success");
-            } else{
-                echo "ERROR: Could not able to execute $sql3. " . mysqli_error($conn);
-            }
-        } else {
-            header("location: ../index.php?loanAdd=ERROR?reason=NotAvailable");
+
         }
-
+    } else {
+        header("location: ../index.php?loanAdd=ERROR?reason=DontExist");
+    }
 ?>
