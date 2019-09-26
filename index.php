@@ -30,7 +30,9 @@ if(!isset($_SESSION['login_user'])){
       <a class="navbar-brand col-sm-3 col-md-2 mr-0" href="#"><?php echo $site_name ?></a>
       <ul class="navbar-nav px-3">
         <li class="nav-item text-nowrap">
-        <a href = "logout.php">Logga ut</a>
+        <form class="form-inline my-2 my-lg-0" action="http://<?php echo $domain_name ?>/LibrarySystem/logout.php">
+            <button class="btn btn-outline-light" type="submit">Logga ut</button>
+        </form>
         </li>
       </ul>
     </nav>
