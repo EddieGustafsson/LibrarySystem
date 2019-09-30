@@ -20,9 +20,11 @@ if(!isset($_SESSION['login_user'])){
 
     <!-- Bootstrap core CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.9/dist/css/bootstrap-select.min.css">
 
     <!-- Custom styles for this template -->
     <link href="http://<?php echo $domain_name ?>/LibrarySystem/assets/css/dashboard.css" rel="stylesheet">
+
   </head>
 
   <body>
@@ -133,8 +135,8 @@ if(!isset($_SESSION['login_user'])){
           <div class="col-sm-6">
           <h6>Lägg till ett lån:</h6>
             <form action="http://<?php echo $domain_name ?>/LibrarySystem/includes/addloan.php">
-            Välj en användare
-                <select name="user_id" id="user_id">
+            Välj en användare:<br>
+                <select class="selectpicker show-tick" name="user_id" id="user_id" data-live-search="true" data-width="auto">
                     <?php
                     include('includes/dbh.inc.php');
                     $sql = "SELECT user_id, firstname, lastname FROM users";
@@ -179,8 +181,8 @@ if(!isset($_SESSION['login_user'])){
 
                 <h6>Gör en bokning:</h6>
                 <form action="http://<?php echo $domain_name ?>/LibrarySystem/includes/reservmedia.php">
-                    Media:
-                    <select name="item_id" id="item_id">
+                    Media:<br>
+                    <select name="item_id" id="item_id" class="selectpicker show-tick" data-live-search="true" data-width="auto">
                         <?php
                         include('includes/dbh.inc.php');
                         $sql = "SELECT item_id, title FROM media WHERE is_borrowed='1'";
@@ -195,8 +197,8 @@ if(!isset($_SESSION['login_user'])){
                         ?>
                     </select><br><br>
                     
-                    Välj en användare
-                    <select name="user_id" id="user_id">
+                    Välj en användare:<br>
+                    <select name="user_id" id="user_id" class="selectpicker show-tick" data-live-search="true" data-width="auto">
                         <?php
                         include('includes/dbh.inc.php');
                         $sql = "SELECT user_id, firstname, lastname FROM users";
@@ -233,13 +235,12 @@ if(!isset($_SESSION['login_user'])){
           <div class="col-md-8">
 
           <div class="container-fluid">
-            <!-- Control the column width, and how they should appear on different devices -->
                 <div class="row">
                     <div class="col-sm-4">
                         <h6>Lägg till en användare:</h6>
                                 <form action="http://<?php echo $domain_name ?>/LibrarySystem/includes/adduser.php">
                                     <p>Personnummer:</p>
-                                    <input type="text" name="user_id" id="user_id" maxlength="12"><br>
+                                    <input type="text" name="user_id" id="user_id" minlength="12" maxlength="12"><br>
                                     <p>Förnamn:</p>
                                     <input type="text" name="firstName" id="firstName"><br>
                                     <p>Efternamn:</p>
@@ -259,7 +260,7 @@ if(!isset($_SESSION['login_user'])){
                         <h6>Ta bort en användare:</h6>
                         <form action="http://<?php echo $domain_name ?>/LibrarySystem/includes/removeuser.php">
                         Välj en användare<br><br>
-                            <select name="user_id" id="user_id">
+                            <select name="user_id" id="user_id" class="selectpicker show-tick" data-live-search="true" data-width="75%">
                                 <?php
                                 include('includes/dbh.inc.php');
                                 $sql = "SELECT user_id, firstname, lastname FROM users";
@@ -306,8 +307,10 @@ if(!isset($_SESSION['login_user'])){
             <h1 class="h2">Media</h1>
           </div>
 
-          <div class="col-md-8">
-            <h6>Lägg till media:</h6>
+          <div class="container-fluid">
+                <div class="row">
+                    <div class="col-sm-4">
+                    <h6>Lägg till media:</h6>
             <form action="http://<?php echo $domain_name ?>/LibrarySystem/includes/addmedia.php">
                 <p>Serienummer:</p>
                 <input type="text" name="item_id" id="item_id" maxlength="11"><br>
@@ -330,8 +333,8 @@ if(!isset($_SESSION['login_user'])){
                 </select>
                 <br>
                 <br>
-                Författare:
-                <select name="author_id" id="author_id">
+                Författare:<br>
+                <select name="author_id" id="author_id" multiple>
                     <option value="">Inget</option>
                     <?php
                     include('includes/dbh.inc.php');
@@ -387,136 +390,129 @@ if(!isset($_SESSION['login_user'])){
                 </select>
                 <br>
                 <br>
-                Genre
-                <select name="genre_id" id="genre_id">
-                    <?php
-                    include('includes/dbh.inc.php');
-                    $sql = "SELECT genre_id, genre_name FROM genre";
-                    $result = $conn->query($sql);
-                    if ($result->num_rows > 0) {
-                    while($row = $result->fetch_assoc()) {
-                        echo "<option value='". $row["genre_id"] ."'>". $row["genre_name"]."</option>";
-                    }
-                    echo "</table>";
-                    } else { echo "0 results"; }
-                    $conn->close();
-                    ?>
-                </select>
-                <br>
-                <br>
-                <input type="submit" value="Lägg till">
-            </form>
-            <br>
-            <br>
-            <br>
+                    Genre
+                        <select name="genre_id" id="genre_id">
+                            <?php
+                            include('includes/dbh.inc.php');
+                            $sql = "SELECT genre_id, genre_name FROM genre";
+                            $result = $conn->query($sql);
+                            if ($result->num_rows > 0) {
+                            while($row = $result->fetch_assoc()) {
+                                echo "<option value='". $row["genre_id"] ."'>". $row["genre_name"]."</option>";
+                            }
+                            echo "</table>";
+                            } else { echo "0 results"; }
+                            $conn->close();
+                            ?>
+                        </select><br><br>
+                        <input type="submit" value="Lägg till">
+                        </form>
+                    </div>
 
-            <h6>Lägg till en författare:</h6>
-            <form action="http://<?php echo $domain_name ?>/LibrarySystem/includes/addauthor.php">
-                <p>Förnamn:</p>
-                <input type="text" name="author_fname" id="author_fname"><br>
-                <p>Efternamn:</p>
-                <input type="text" name="author_lname" id="author_lname"><br><br>
-                <input type="submit" value="Lägg till">
-            </form>
-            <br>
+                    <div class="col-sm-4">
+                        <h6>Lägg till en författare:</h6>
+                        <form action="http://<?php echo $domain_name ?>/LibrarySystem/includes/addauthor.php">
+                            <p>Förnamn:</p>
+                            <input type="text" name="author_fname" id="author_fname"><br>
+                            <p>Efternamn:</p>
+                            <input type="text" name="author_lname" id="author_lname"><br><br>
+                            <input type="submit" value="Lägg till">
+                        </form>
+                        <br>
+                        <h6>Lägg till en regissör:</h6>
+                        <form action="http://<?php echo $domain_name ?>/LibrarySystem/includes/adddirector.php">
+                            <p>Förnamn:</p>
+                            <input type="text" name="director_fname" id="director_fname"><br>
+                            <p>Efternamn:</p>
+                            <input type="text" name="director_lname" id="director_lname"><br><br>
+                            <input type="submit" value="Lägg till">
+                        </form>
+                        <br>
+                        <h6>Lägg till en berättare:</h6>
+                        <form action="http://<?php echo $domain_name ?>/LibrarySystem/includes/addnarrator.php">
+                            <p>Förnamn:</p>
+                            <input type="text" name="narrator_fname" id="narrator_fname"><br>
+                            <p>Efternamn:</p>
+                            <input type="text" name="narrator_lname" id="narrator_lname"><br><br>
+                            <input type="submit" value="Lägg till">
+                        </form>
+                        <br>
+                        <h6>Lägg till en genre:</h6>
+                        <form action="http://<?php echo $domain_name ?>/LibrarySystem/includes/addgenre.php">
+                            <p>Namn:</p>
+                            <input type="text" name="genre_name" id="genre_name"><br><br>
+                            <input type="submit" value="Lägg till">
+                        </form>
+                    </div>
 
-            <h6>Författarlista:</h6>
-                <?php
-                    include('includes/dbh.inc.php');
-                    $sql = "SELECT author_id, author_fname, author_lname FROM authors";
-                    $result = $conn->query($sql);
-                    if ($result->num_rows > 0) {
-                        echo "<table class='table'><tr><th scope='col'>#</th><th scope='col'>Namn</th></tr>";
-                    // output data of each row
-                    while($row = $result->fetch_assoc()) {
-                        echo "<tr><td scope='row'>" . $row["author_id"]. "</td><td scope='row'>" . $row["author_fname"]. " " . $row["author_lname"]. "</td></tr>";
-                    }
-                    echo "</table>";
-                    } else { echo "0 results"; }
-                    $conn->close();
-                ?>
-            <br>
-            <br>
+                    <div class="col-sm-4">
+                    <h6>Författarlista:</h6>
+                        <?php
+                            include('includes/dbh.inc.php');
+                            $sql = "SELECT author_id, author_fname, author_lname FROM authors";
+                            $result = $conn->query($sql);
+                            if ($result->num_rows > 0) {
+                                echo "<table class='table'><tr><th scope='col'>#</th><th scope='col'>Namn</th></tr>";
+                            // output data of each row
+                            while($row = $result->fetch_assoc()) {
+                                echo "<tr><td scope='row'>" . $row["author_id"]. "</td><td scope='row'>" . $row["author_fname"]. " " . $row["author_lname"]. "</td></tr>";
+                            }
+                            echo "</table>";
+                            } else { echo "0 results"; }
+                            $conn->close();
+                        ?>
 
-            <h6>Lägg till en director:</h6>
-            <form action="http://<?php echo $domain_name ?>/LibrarySystem/includes/adddirector.php">
-                <p>Förnamn:</p>
-                <input type="text" name="director_fname" id="director_fname"><br>
-                <p>Efternamn:</p>
-                <input type="text" name="director_lname" id="director_lname"><br><br>
-                <input type="submit" value="Lägg till">
-            </form>
-            <br>
+                    <h6>Regissörlista:</h6>
+                        <?php
+                            include('includes/dbh.inc.php');
+                             $sql = "SELECT director_id, director_fname, director_lname FROM directors";
+                            $result = $conn->query($sql);
+                             if ($result->num_rows > 0) {
+                                echo "<table class='table'><tr><th scope='col'>#</th><th scope='col'>Namn</th></tr>";
+                            // output data of each row
+                             while($row = $result->fetch_assoc()) {
+                                echo "<tr><td scope='row'>" . $row["director_id"]. "</td><td scope='row'>" . $row["director_fname"]. " " . $row["director_lname"]. "</td></tr>";
+                            }
+                            echo "</table>";
+                            } else { echo "0 results"; }
+                            $conn->close();
+                        ?>
+                    <h6>Berättarlista:</h6>
+                        <?php
+                            include('includes/dbh.inc.php');
+                            $sql = "SELECT narrator_id, narrator_fname, narrator_lname FROM narrators";
+                            $result = $conn->query($sql);
+                            if ($result->num_rows > 0) {
+                                echo "<table class='table'><tr><th scope='col'>#</th><th scope='col'>Namn</th></tr>";
+                            // output data of each row
+                            while($row = $result->fetch_assoc()) {
+                                echo "<tr><td scope='row'>" . $row["narrator_id"]. "</td><td scope='row'>" . $row["narrator_fname"]. " " . $row["narrator_lname"]. "</td></tr>";
+                            }
+                            echo "</table>";
+                            } else { echo "0 results"; }
+                            $conn->close();
+                        ?>
 
-            <h6>Directorlista:</h6>
-                <?php
-                    include('includes/dbh.inc.php');
-                    $sql = "SELECT director_id, director_fname, director_lname FROM directors";
-                    $result = $conn->query($sql);
-                    if ($result->num_rows > 0) {
-                        echo "<table class='table'><tr><th scope='col'>#</th><th scope='col'>Namn</th></tr>";
-                    // output data of each row
-                    while($row = $result->fetch_assoc()) {
-                        echo "<tr><td scope='row'>" . $row["director_id"]. "</td><td scope='row'>" . $row["director_fname"]. " " . $row["director_lname"]. "</td></tr>";
-                    }
-                    echo "</table>";
-                    } else { echo "0 results"; }
-                    $conn->close();
-                ?>
-            <br>
-            <br>
-
-            <h6>Lägg till en berättare:</h6>
-            <form action="http://<?php echo $domain_name ?>/LibrarySystem/includes/addnarrator.php">
-                <p>Förnamn:</p>
-                <input type="text" name="narrator_fname" id="narrator_fname"><br>
-                <p>Efternamn:</p>
-                <input type="text" name="narrator_lname" id="narrator_lname"><br><br>
-                <input type="submit" value="Lägg till">
-            </form>
-            <br>
-
-            <h6>Berättarlista:</h6>
-                <?php
-                    include('includes/dbh.inc.php');
-                    $sql = "SELECT narrator_id, narrator_fname, narrator_lname FROM narrators";
-                    $result = $conn->query($sql);
-                    if ($result->num_rows > 0) {
-                        echo "<table class='table'><tr><th scope='col'>#</th><th scope='col'>Namn</th></tr>";
-                    // output data of each row
-                    while($row = $result->fetch_assoc()) {
-                        echo "<tr><td scope='row'>" . $row["narrator_id"]. "</td><td scope='row'>" . $row["narrator_fname"]. " " . $row["narrator_lname"]. "</td></tr>";
-                    }
-                    echo "</table>";
-                    } else { echo "0 results"; }
-                    $conn->close();
-                ?>
-            <br>
-            <br>
-
-            <h6>Lägg till en genre:</h6>
-            <form action="http://<?php echo $domain_name ?>/LibrarySystem/includes/addgenre.php">
-                <p>Namn:</p>
-                <input type="text" name="genre_name" id="genre_name"><br><br>
-                <input type="submit" value="Lägg till">
-            </form>
-            <br>
-
-            <h6>Genrelista:</h6>
-                <?php
-                    include('includes/dbh.inc.php');
-                    $sql = "SELECT genre_id, genre_name FROM genre";
-                    $result = $conn->query($sql);
-                    if ($result->num_rows > 0) {
-                        echo "<table class='table'><tr><th scope='col'>#</th><th scope='col'>Namn</th></tr>";
-                    // output data of each row
-                    while($row = $result->fetch_assoc()) {
-                        echo "<tr><td scope='row'>" . $row["genre_id"]. "</td><td scope='row'>" . $row["genre_name"]. "</td></tr>";
-                    }
-                    echo "</table>";
-                    } else { echo "0 results"; }
-                    $conn->close();
-                ?>
+                    <h6>Genrelista:</h6>
+                        <?php
+                            include('includes/dbh.inc.php');
+                            $sql = "SELECT genre_id, genre_name FROM genre";
+                            $result = $conn->query($sql);
+                            if ($result->num_rows > 0) {
+                                echo "<table class='table'><tr><th scope='col'>#</th><th scope='col'>Namn</th></tr>";
+                            // output data of each row
+                            while($row = $result->fetch_assoc()) {
+                                echo "<tr><td scope='row'>" . $row["genre_id"]. "</td><td scope='row'>" . $row["genre_name"]. "</td></tr>";
+                            }
+                            echo "</table>";
+                            } else { echo "0 results"; }
+                            $conn->close();
+                        ?>
+                    </div>
+                </div>
+          </div>
+          <div class="col-md-8">
+ 
             <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pb-2 mb-3 border-bottom" id="archive">
                 <h1 class="h2">Arkiv</h1>
             </div>
@@ -574,6 +570,8 @@ if(!isset($_SESSION['login_user'])){
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.9/dist/js/bootstrap-select.min.js"></script>
 
     <!-- Icons -->
     <script src="https://unpkg.com/feather-icons/dist/feather.min.js"></script>

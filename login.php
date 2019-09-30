@@ -49,7 +49,7 @@
       <input type="password" id="inputPersnr" name="inputPersnr" class="form-control" placeholder="20001212XXXX" maxlength="12" required autofocus>
       <br>
       <button class="btn btn-lg btn-primary btn-block" type="submit" value="Submit">Logga in</button>
-      <p class="mt-5 mb-3 text-muted">NTI Gymnasiet - Bibliotek &copy;2019</p>
+      <p class="mt-5 mb-3 text-muted"><?php include ('includes/settings.php'); echo $login_footer?></p>
     </form>
   </body>
 </html>

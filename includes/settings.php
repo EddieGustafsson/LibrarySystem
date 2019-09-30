@@ -2,7 +2,8 @@
 //* Website Settings *//
 
 $domain_name = 'localhost';
-$site_name = 'Library System';
+$site_name = 'NTI - Bibliotek';
+$login_footer = 'NTI Gymnasiet - Bibliotek &copy;2019';
 
 // Database Settings //
 $db_host = 'localhost'; //The database host example "localhost"
