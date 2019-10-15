@@ -7,7 +7,7 @@
       
       $persnr = mysqli_real_escape_string($conn,$_POST['inputPersnr']);
       
-      $sql = "SELECT user_id FROM users WHERE user_id = '$persnr' AND role_id='5'";
+      $sql = "SELECT user_id FROM users WHERE user_id = '$persnr' AND role_id='5' OR role_id='4'";
       $result = mysqli_query($conn,$sql);
       $row = mysqli_fetch_array($result,MYSQLI_ASSOC);
       
