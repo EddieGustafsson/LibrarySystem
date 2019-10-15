@@ -1,8 +1,12 @@
 <?php 
     include('dbh.inc.php');
     $user_id = mysqli_real_escape_string($conn, $_REQUEST['user_id']);
+    
     $start_date = mysqli_real_escape_string($conn, $_REQUEST['start_date']);
-    $end_date = mysqli_real_escape_string($conn, $_REQUEST['end_date']);
+    $date = strtotime($start_date);
+    $date = strtotime("3 week", $date);
+    $end_date = date('y-m-d', $date);
+
     $item_id = mysqli_real_escape_string($conn, $_REQUEST['item_id']);
     $is_borrowed = 1;
 
