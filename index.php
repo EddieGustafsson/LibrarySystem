@@ -30,6 +30,9 @@ if(!isset($_SESSION['login_user'])){
   <body>
     <nav class="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0">
       <a class="navbar-brand col-sm-3 col-md-2 mr-0" href="#"><?php echo $site_name ?></a>
+        <div class="md-form mt-0">
+          <input class="form-control" type="text" placeholder="Search" aria-label="Search">
+        </div>
       <ul class="navbar-nav px-3">
         <li class="nav-item text-nowrap">
         <form class="form-inline my-2 my-lg-0" action="http://<?php echo $domain_name ?>/LibrarySystem/logout.php">
@@ -125,8 +128,11 @@ if(!isset($_SESSION['login_user'])){
         </nav>
 
         <main role="main" class="col-md-9 ml-sm-auto col-lg-10 pt-3 px-4">
+
+        <?php include('includes/alert.php'); ?>
+
           <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pb-2 mb-3 border-bottom" id="dashboard">
-            <h1 class="h2">Dashboard</h1>
+            <h1 class="h2">Kontrollpanel</h1>
           </div>
 
 
@@ -146,16 +152,13 @@ if(!isset($_SESSION['login_user'])){
                         echo "<option value='". $row["user_id"] ."'>". $row["user_id"]." | ". $row["firstname"]." ". $row["lastname"]."</option>";
                     }
                     echo "</table>";
-                    } else { echo "0 results"; }
+                    } else { echo "0 resultat"; }
                     $conn->close();
                     ?>
                 </select>
                 <br><br>
                 <p>Start datum (Dagens datum är <?php echo date("Y-m-d");?>):</p>
                 <input type="date" name="start_date" id="start_date" value="<?php echo date("Y-m-d");?>"><br><br>
-
-                <p>Slut datum:</p>
-                <input type="date" name="end_date" id="end_date"><br><br>
 
                 <p>Serienummer:</p>
                 <input type="text" name="item_id" id="item_id" placeholder="00870006044" maxlength="11"><br><br>
@@ -170,10 +173,30 @@ if(!isset($_SESSION['login_user'])){
         
           <div class="col-sm-6">
             <h6>Avsluta ett lån:</h6>
+            <i>Skanna antingen in ett serienummer eller välj en media</i>
                 <form action="http://<?php echo $domain_name ?>/LibrarySystem/includes/endloan.php">
+                  <br>
                     <p>Serienummer:</p>
                     <input type="text" name="item_id" id="item_id" maxlength="11" placeholder="00870006044"><br><br>
                     
+                    <p>Media:</p>
+                    <select name="item_id" id="item_id" class="selectpicker show-tick" data-live-search="true" data-width="auto">
+                        <?php
+                        include('includes/dbh.inc.php');
+                        $sql = "SELECT item_id, title FROM media WHERE is_borrowed='1'";
+                        $result = $conn->query($sql);
+                        if ($result->num_rows > 0) {
+                        while($row = $result->fetch_assoc()) {
+                            echo "<option value='". $row["item_id"] ."'>". $row["item_id"]." | ". $row["title"]."</option>";
+                        }
+                        echo "</table>";
+                        } else { echo "0 resultat"; }
+                        $conn->close();
+                        ?>
+                    </select>
+                    <br>
+                    <br>
+
                     <input type="submit" value="Avsluta lån">
                 </form>
                 <br>
@@ -192,7 +215,7 @@ if(!isset($_SESSION['login_user'])){
                             echo "<option value='". $row["item_id"] ."'>". $row["item_id"]." | ". $row["title"]."</option>";
                         }
                         echo "</table>";
-                        } else { echo "0 results"; }
+                        } else { echo "0 resultat"; }
                         $conn->close();
                         ?>
                     </select><br><br>
@@ -208,7 +231,7 @@ if(!isset($_SESSION['login_user'])){
                             echo "<option value='". $row["user_id"] ."'>". $row["user_id"]." | ". $row["firstname"]." ". $row["lastname"]."</option>";
                         }
                         echo "</table>";
-                        } else { echo "0 results"; }
+                        } else { echo "0 resultat"; }
                         $conn->close();
                         ?>
                     </select><br><br>
@@ -270,7 +293,7 @@ if(!isset($_SESSION['login_user'])){
                                     echo "<option value='". $row["user_id"] ."'>". $row["user_id"]." | ". $row["firstname"]." ". $row["lastname"]."</option>";
                                 }
                                 echo "</table>";
-                                } else { echo "0 results"; }
+                                } else { echo "0 resultat"; }
                                 $conn->close();
                                 ?>
                             </select>
@@ -292,7 +315,7 @@ if(!isset($_SESSION['login_user'])){
                                 echo "<tr><td scope='row'>" . $row["user_id"]. "</td><td scope='row'>" . $row["firstname"]. " " . $row["lastname"]. "</td><td scope='row'>" . $row["role_name"] . "</td><td scope='row'>" . $row["date"]. "</td></tr>";
                             }
                             echo "</table>";
-                            } else { echo "0 results"; }
+                            } else { echo "0 resultat"; }
                             $conn->close();
                             ?>
                     </div>
@@ -327,7 +350,7 @@ if(!isset($_SESSION['login_user'])){
                         echo "<option value='". $row["cat_id"] ."'>". $row["cat_name"]."</option>";
                     }
                     echo "</table>";
-                    } else { echo "0 results"; }
+                    } else { echo "0 resultat"; }
                     $conn->close();
                     ?>
                 </select>
@@ -345,7 +368,7 @@ if(!isset($_SESSION['login_user'])){
                         echo "<option value='". $row["author_id"] ."'>". $row["author_fname"]." ". $row["author_lname"]."</option>";
                     }
                     echo "</table>";
-                    } else { echo "0 results"; }
+                    } else { echo "0 resultat"; }
                     $conn->close();
                     ?>
                 </select>
@@ -365,7 +388,7 @@ if(!isset($_SESSION['login_user'])){
                         echo "<option value='". $row["narrator_id"] ."'>". $row["narrator_fname"]." ". $row["narrator_lname"]."</option>";
                     }
                     echo "</table>";
-                    } else { echo "0 results"; }
+                    } else { echo "0 resultat"; }
                     $conn->close();
                     ?>
                 </select>
@@ -384,7 +407,7 @@ if(!isset($_SESSION['login_user'])){
                         echo "<option value='". $row["director_id"] ."'>". $row["director_fname"]." ". $row["director_lname"]."</option>";
                     }
                     echo "</table>";
-                    } else { echo "0 results"; }
+                    } else { echo "0 resultat"; }
                     $conn->close();
                     ?>
                 </select>
@@ -401,7 +424,7 @@ if(!isset($_SESSION['login_user'])){
                                 echo "<option value='". $row["genre_id"] ."'>". $row["genre_name"]."</option>";
                             }
                             echo "</table>";
-                            } else { echo "0 results"; }
+                            } else { echo "0 resultat"; }
                             $conn->close();
                             ?>
                         </select><br><br>
@@ -458,7 +481,7 @@ if(!isset($_SESSION['login_user'])){
                                 echo "<tr><td scope='row'>" . $row["author_id"]. "</td><td scope='row'>" . $row["author_fname"]. " " . $row["author_lname"]. "</td></tr>";
                             }
                             echo "</table>";
-                            } else { echo "0 results"; }
+                            } else { echo "0 resultat"; }
                             $conn->close();
                         ?>
 
@@ -474,7 +497,7 @@ if(!isset($_SESSION['login_user'])){
                                 echo "<tr><td scope='row'>" . $row["director_id"]. "</td><td scope='row'>" . $row["director_fname"]. " " . $row["director_lname"]. "</td></tr>";
                             }
                             echo "</table>";
-                            } else { echo "0 results"; }
+                            } else { echo "0 resultat"; }
                             $conn->close();
                         ?>
                     <h6>Berättarlista:</h6>
@@ -489,7 +512,7 @@ if(!isset($_SESSION['login_user'])){
                                 echo "<tr><td scope='row'>" . $row["narrator_id"]. "</td><td scope='row'>" . $row["narrator_fname"]. " " . $row["narrator_lname"]. "</td></tr>";
                             }
                             echo "</table>";
-                            } else { echo "0 results"; }
+                            } else { echo "0 resultat"; }
                             $conn->close();
                         ?>
 
@@ -505,7 +528,7 @@ if(!isset($_SESSION['login_user'])){
                                 echo "<tr><td scope='row'>" . $row["genre_id"]. "</td><td scope='row'>" . $row["genre_name"]. "</td></tr>";
                             }
                             echo "</table>";
-                            } else { echo "0 results"; }
+                            } else { echo "0 resultat"; }
                             $conn->close();
                         ?>
                     </div>
@@ -533,7 +556,7 @@ if(!isset($_SESSION['login_user'])){
                                 echo "<tr><td scope='row'>" . $row["item_id"]. "</td><td scope='row'>" . $row["title"]. "</td><td scope='row'>" . $row["cat_name"]. "</td><td scope='row'>" . $row["genre_name"]. "</td></tr>";
                             }
                             echo "</table>";
-                            } else { echo "0 results"; }
+                            } else { echo "0 resultat"; }
                             $conn->close();
                         ?>
                     </div>
@@ -553,7 +576,7 @@ if(!isset($_SESSION['login_user'])){
                                 echo "<tr><td scope='row'>" . $row["firstname"]. " " . $row["lastname"]. "</td><td scope='row'>" . $row["item_id"]. "</td><td scope='row'>" . $row["title"]. "</td><td scope='row'>" . $row["start_date"]. "</td><td scope='row'>" . $row["end_date"]. "</td></tr>";
                             }
                             echo "</table>";
-                            } else { echo "0 results"; }
+                            } else { echo "0 resultat"; }
                             $conn->close();
                         ?>
                     </div>
