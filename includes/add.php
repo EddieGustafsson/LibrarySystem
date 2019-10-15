@@ -13,9 +13,6 @@ switch ($_POST['function']) {
     case 'addLoan':
         addLoan();
         break;
-    case 'addLoan':
-        addLoan();
-        break;
     case 'addMedia':
         addMedia();
         break;
@@ -27,7 +24,7 @@ switch ($_POST['function']) {
         break;
     default:
         echo "ERROR";
-        
+
 
 function addAuthor(){
     include('dbh.inc.php');
