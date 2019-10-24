@@ -23,7 +23,7 @@ switch ($_POST['function']) {
         addUser();
         break;
     default:
-        echo "ERROR";
+        error();
 
 
 function addAuthor(){
@@ -178,6 +178,10 @@ function addUser(){
     } else{
         echo "ERROR: Could not able to execute $sql. " . mysqli_error($conn);
     }
+}
+
+function error(){
+    echo "error";
 }
 
 ?>
