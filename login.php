@@ -50,7 +50,7 @@
 	<div class="limiter">
 		<div class="container-login100" style="background-image: url('assets/img/bg-02.jpg');">
 			<div class="wrap-login100">
-				<form class="login100-form validate-form">
+				<form action="includes/login.inc.php" method="post" class="login100-form validate-form">
 					<span>
 						<img style="display: block; margin-left: auto; margin-right: auto;" width="70%" height="70%" src="assets/img/nti_logo_white.svg">
 					</span>
