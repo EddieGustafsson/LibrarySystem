@@ -23,33 +23,87 @@
       }
    }
 ?>
-<!doctype html>
+
+<!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="">
-    <meta name="author" content="">
+<head>
+	<title>NTI Gymnasiet - Bibliotek</title>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>Library System</title>
+	<link rel="icon" type="image/png" href="assets/img/icons/favicon.ico"/>
+	<link rel="stylesheet" type="text/css" href="assets/js/bootstrap/css/bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" href="assets/fonts/font-awesome-4.7.0/css/font-awesome.min.css">
+	<link rel="stylesheet" type="text/css" href="assets/fonts/iconic/css/material-design-iconic-font.min.css">
+	<link rel="stylesheet" type="text/css" href="assets/js/animate/animate.css">
 
-    <link rel="canonical" href="https://getbootstrap.com/docs/4.0/examples/sign-in/">
+	<link rel="stylesheet" type="text/css" href="assets/js/css-hamburgers/hamburgers.min.css">
+	<link rel="stylesheet" type="text/css" href="assets/js/animsition/css/animsition.min.css">
+	<link rel="stylesheet" type="text/css" href="assets/js/select2/select2.min.css">
 
-    <!-- Bootstrap core CSS -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+	<link rel="stylesheet" type="text/css" href="assets/js/daterangepicker/daterangepicker.css">
+	<link rel="stylesheet" type="text/css" href="assets/css/util.css">
+	<link rel="stylesheet" type="text/css" href="assets/css/main.css">
+</head>
+<body>
+	
+	<div class="limiter">
+		<div class="container-login100" style="background-image: url('assets/img/bg-02.jpg');">
+			<div class="wrap-login100">
+				<form class="login100-form validate-form">
+					<span>
+						<img style="display: block; margin-left: auto; margin-right: auto;" width="70%" height="70%" src="assets/img/nti_logo_white.svg">
+					</span>
 
-    <!-- Custom styles for this template -->
-    <link href="http://<?php echo $domain_name ?>/LibrarySystem/assets/css/signin.css" rel="stylesheet">
-  </head>
+					<span class="login100-form-title p-b-34 p-t-27">
+          Logga in
+					</span>
 
-  <body class="text-center">
-    <form class="form-signin" action = "" method = "post">
-      <h1 class="h3 mb-3 font-weight-normal">Logga in till ditt konto</h1>
-      <label for="inputEmail" class="sr-only" >Personnummer</label>
-      <input type="password" id="inputPersnr" name="inputPersnr" class="form-control" placeholder="20001212XXXX" maxlength="12" required autofocus>
-      <br>
-      <button class="btn btn-lg btn-primary btn-block" type="submit" value="Submit">Logga in</button>
-      <p class="mt-5 mb-3 text-muted"><?php include ('includes/settings.php'); echo $login_footer?></p>
-    </form>
-  </body>
+					<div class="wrap-input100 validate-input" data-validate = "Skriv in ditt användarnamn">
+						<input class="input100" type="text" name="username" placeholder="Användarnamn">
+						<span class="focus-input100" data-placeholder="&#xf207;"></span>
+					</div>
+
+					<div class="wrap-input100 validate-input" data-validate="Skriv in ditt lösenord">
+						<input class="input100" type="password" name="pass" placeholder="Lösenord">
+						<span class="focus-input100" data-placeholder="&#xf191;"></span>
+					</div>
+
+					<div class="contact100-form-checkbox">
+						<input class="input-checkbox100" id="ckb1" type="checkbox" name="remember-me">
+						<label class="label-checkbox100" for="ckb1">
+            Kom ihåg mig
+						</label>
+					</div>
+
+					<div class="container-login100-form-btn">
+						<button class="login100-form-btn">
+            Logga in
+						</button>
+					</div>
+
+					<div class="text-center p-t-90">
+						<a class="txt1" href="#">
+            Glömt ditt lösenord?
+						</a>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+	
+
+	<div id="dropDownSelect1"></div>
+	
+	<script src="assets/js/jquery/jquery-3.2.1.min.js"></script>
+	<script src="assets/js/animsition/js/animsition.min.js"></script>
+	<script src="assets/js/bootstrap/js/popper.js"></script>
+	<script src="assets/js/bootstrap/js/bootstrap.min.js"></script>
+	<script src="assets/js/select2/select2.min.js"></script>
+	<script src="assets/js/daterangepicker/moment.min.js"></script>
+	<script src="assets/js/daterangepicker/daterangepicker.js"></script>
+	<script src="assets/js/countdowntime/countdowntime.js"></script>
+	<script src="assets/js/main.js"></script>
+
+</body>
 </html>
