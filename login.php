@@ -1,29 +1,3 @@
-<?php 
-   include ('includes/dbh.inc.php');
-   session_start();
-   
-   if($_SERVER["REQUEST_METHOD"] == "POST") {
-      // username and password sent from form 
-      
-      $persnr = mysqli_real_escape_string($conn,$_POST['inputPersnr']);
-      
-      $sql = "SELECT user_id FROM users WHERE user_id = '$persnr' AND role_id='5' OR role_id='4'";
-      $result = mysqli_query($conn,$sql);
-      $row = mysqli_fetch_array($result,MYSQLI_ASSOC);
-      
-      $count = mysqli_num_rows($result);
-      
-		
-      if($count == 1) {
-         $_SESSION['login_user'] = $persnr;
-         header("location: index.php");
-      }else {
-         $error = "Your Code is wrong is invalid";
-         header("location: ./index.php?userLogin=Error?reason=NotAdmin");
-      }
-   }
-?>
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -50,13 +24,13 @@
 	<div class="limiter">
 		<div class="container-login100" style="background-image: url('assets/img/bg-02.jpg');">
 			<div class="wrap-login100">
-				<form action="includes/login.inc.php" method="post" class="login100-form validate-form">
+				<form action="includes/login.inc.php" method="POST" class="login100-form validate-form">
 					<span>
 						<img style="display: block; margin-left: auto; margin-right: auto;" width="70%" height="70%" src="assets/img/nti_logo_white.svg">
 					</span>
 
 					<span class="login100-form-title p-b-34 p-t-27">
-          Logga in
+          				Logga in
 					</span>
 
 					<div class="wrap-input100 validate-input" data-validate = "Skriv in ditt användarnamn">
@@ -65,26 +39,26 @@
 					</div>
 
 					<div class="wrap-input100 validate-input" data-validate="Skriv in ditt lösenord">
-						<input class="input100" type="password" name="pass" placeholder="Lösenord">
+						<input class="input100" type="password" name="password" placeholder="Lösenord">
 						<span class="focus-input100" data-placeholder="&#xf191;"></span>
 					</div>
 
 					<div class="contact100-form-checkbox">
 						<input class="input-checkbox100" id="ckb1" type="checkbox" name="remember-me">
 						<label class="label-checkbox100" for="ckb1">
-            Kom ihåg mig
+            				Kom ihåg mig
 						</label>
 					</div>
 
 					<div class="container-login100-form-btn">
-						<button class="login100-form-btn">
-            Logga in
+						<button type="submit" name="submit" class="login100-form-btn">
+            				Logga in
 						</button>
 					</div>
 
 					<div class="text-center p-t-90">
 						<a class="txt1" href="#">
-            Glömt ditt lösenord?
+            				Glömt ditt lösenord?
 						</a>
 					</div>
 				</form>

@@ -6,12 +6,12 @@ if (isset($_POST['submit'])){
 
     include 'dbh.inc.php';
 
-    $username = mysqli_real_escape_string($conn, $_POST['username']);
-    $pass = mysqli_real_escape_string($conn, $_POST['pass']);
+    $username = mysqli_real_escape_string($conn,$_POST['username']);
+    $password = mysqli_real_escape_string($conn,$_POST['password']);
 
     //Error handlers
     //Check if inputs are empty
-    if(empty($username) || empty($pass)){
+    if(empty($username) || empty($password)){
         header("Location: ../login.php?login=empty");
         exit();
     } else{
@@ -24,14 +24,13 @@ if (isset($_POST['submit'])){
         } else{
             if($row = mysqli_fetch_assoc($result)){
                 //De-hashing the password
-                $hashedPwdCheck = password_verify($pass, $row['password']);
-                if($hashedPwdCheck == false){
+                $hashedpasswordCheck = password_verify($password, $row['password']);
+                if($hashedpasswordCheck == false){
                     header("Location: ../login.php?login=error");
                     exit();
-                } elseif ($hashedPwdCheck == true){
+                } elseif ($hashedpasswordCheck == true){
                     //Log in the user here
-                    $_SESSION['id'] =$row['id'];
-                    $_SESSION['username'] =$row['username'];
+                    $_SESSION['login_user'] = $username;
                     header("Location: ../index.php?login=success");
                     exit();
                 }
