@@ -1,39 +1,34 @@
 <?php 
 
+include("dbh.inc.php");
+
 switch ($_POST['function']) {
     case 'addAuthor':
-        include('dbh.inc.php');
-        addAuthor();
+        addAuthor($conn);
         break;
     case 'addDirector':
-        include('dbh.inc.php');
-        addDirector();
+        addDirector($conn);
         break;
     case 'addGenre':
-        include('dbh.inc.php');
-        addGenre();
+        addGenre($conn);
         break;
     case 'addLoan':
-        include('dbh.inc.php');
-        addLoan();
+        addLoan($conn);
         break;
     case 'addMedia':
-        include('dbh.inc.php');
-        addMedia();
+        addMedia($conn);
         break;
     case 'addNarrator':
-        include('dbh.inc.php');
-        addNarrator();
+        addNarrator($conn);
         break;
     case 'addUser':
-        include('dbh.inc.php');
-        addUser();
+        addUser($conn);
         break;
     default:
         error();
 
 
-function addAuthor(){
+function addAuthor($conn){
     $author_fname = mysqli_real_escape_string($conn, $_REQUEST['author_fname']);
     $author_lname = mysqli_real_escape_string($conn, $_REQUEST['author_lname']);
 
@@ -45,7 +40,7 @@ function addAuthor(){
     }
 }
 
-function addDirector(){
+function addDirector($conn){
     $director_fname = mysqli_real_escape_string($conn, $_REQUEST['director_fname']);
     $director_lname = mysqli_real_escape_string($conn, $_REQUEST['director_lname']);
 
@@ -57,7 +52,7 @@ function addDirector(){
     }
 }
 
-function addGenre(){
+function addGenre($conn){
     $genre_id = mysqli_real_escape_string($conn, $_REQUEST['genre_id']);
     $genre_name = mysqli_real_escape_string($conn, $_REQUEST['genre_name']);
 
@@ -69,7 +64,7 @@ function addGenre(){
     }
 }
 
-function addLoan(){
+function addLoan($conn){
     $user_id = mysqli_real_escape_string($conn, $_REQUEST['user_id']);
     
     $start_date = mysqli_real_escape_string($conn, $_REQUEST['start_date']);
@@ -109,7 +104,7 @@ function addLoan(){
     }
 }
 
-function addMedia(){
+function addMedia($conn){
     $item_id = mysqli_real_escape_string($conn, $_REQUEST['item_id']);
     $title = mysqli_real_escape_string($conn, $_REQUEST['title']);
     $cat_id = mysqli_real_escape_string($conn, $_REQUEST['cat_id']);
@@ -153,7 +148,7 @@ function addMedia(){
     }
 }
 
-function addNarrator(){
+function addNarrator($conn){
     $narrator_fname = mysqli_real_escape_string($conn, $_REQUEST['narrator_fname']);
     $narrator_lname = mysqli_real_escape_string($conn, $_REQUEST['narrator_lname']);
 
@@ -165,7 +160,7 @@ function addNarrator(){
     }
 }
 
-function addUser(){
+function addUser($conn){
     $user_id = mysqli_real_escape_string($conn, $_REQUEST['user_id']);
     $firstName = mysqli_real_escape_string($conn, $_REQUEST['firstName']);
     $lastName = mysqli_real_escape_string($conn, $_REQUEST['lastName']);
