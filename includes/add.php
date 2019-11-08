@@ -26,6 +26,7 @@ switch ($_POST['function']) {
         break;
     default:
         error();
+}
 
 
 function addAuthor($conn){
@@ -90,17 +91,17 @@ function addLoan($conn){
                 
                 $sql3 = "UPDATE `media` SET `is_borrowed` = '1' WHERE `media`.`item_id` = '$item_id'";
                 if(mysqli_query($conn, $sql3)){
-                    header("location: ../index.php?loanAdd=Success");
+                    header("location: ../index.php?page=addloan&loanAdd=Success");
                 } else{
                     echo "ERROR: Could not able to execute $sql3. " . mysqli_error($conn);
                 }
             } else {
-                header("location: ../index.php?loanAdd=ERROR?reason=NotAvailable");
+                header("location: ../index.php?page=addloan&loanAdd=ERROR?reason=NotAvailable");
             }
 
         }
     } else {
-        header("location: ../index.php?loanAdd=ERROR?reason=DontExist");
+        header("location: ../index.php?page=addloan&loanAdd=ERROR?reason=DontExist");
     }
 }
 
@@ -178,5 +179,3 @@ function addUser($conn){
 function error(){
     echo "error";
 }
-
-?>
