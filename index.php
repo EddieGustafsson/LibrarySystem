@@ -147,6 +147,9 @@ if(!isset($_SESSION['login_user'])){
                     case 'endloan':
                         include('page/endloan.php');
                         break;
+                    case 'reservmedia':
+                          include('page/reservmedia.php');
+                          break;
                     default:
                         include('page/firstpage.php'); 
                 }
