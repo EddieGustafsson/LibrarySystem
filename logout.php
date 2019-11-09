@@ -28,7 +28,7 @@
   <body class="text-center">
     <form class="form-signin" action = "" method = "post">
       <h1 class="h3 mb-3 font-weight-normal">Loggar ut...</h1>
-      <p class="mb-3 text-muted">Du loggas nu ut från ditt konot</p>
+      <p class="mb-3 text-muted">Du loggas nu ut från ditt konto</p>
     </form>
   </body>
 </html>
