@@ -65,16 +65,33 @@ if(!isset($_SESSION['login_user'])){
                 </div>
             </li>
               <li class="nav-item">
-                <a class="nav-link" href="#media">
-                  <span data-feather="layers"></span>
-                  Media
+                <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#media_collapse" id="navbarDropdownMenuLink" data-toggle="collapse" aria-haspopup="true" aria-expanded="false">
+                    <span data-feather="layers"></span>
+                    Media
                 </a>
+                <div class="panel-collapse collapse" id="media_collapse" aria-labelledby="navbarDropdownMenuLink">
+                    <a class="dropdown-item" href="?page=home"><span data-feather="arrow-right"></span> Lägg till media</a>
+                    <a class="dropdown-item" href="?page=home"><span data-feather="arrow-right"></span> Lägg till en författare</a>
+                    <a class="dropdown-item" href="?page=home"><span data-feather="arrow-right"></span> Lägg till en regissör</a>
+                    <a class="dropdown-item" href="?page=home"><span data-feather="arrow-right"></span> Lägg till en berättare</a>
+                    <a class="dropdown-item" href="?page=home"><span data-feather="arrow-right"></span> Lägg till en genre</a>
+                </div>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="#archive">
-                  <span data-feather="archive"></span>
-                  Arkiv
+              <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#archive_collapse" id="navbarDropdownMenuLink" data-toggle="collapse" aria-haspopup="true" aria-expanded="false">
+                    <span data-feather="archive"></span>
+                    Arkiv
                 </a>
+                <div class="panel-collapse collapse" id="archive_collapse" aria-labelledby="navbarDropdownMenuLink">
+                    <a class="dropdown-item" href="?page=home"><span data-feather="arrow-right"></span> Medialista</a>
+                    <a class="dropdown-item" href="?page=home"><span data-feather="arrow-right"></span> Lånelista</a>
+                    <a class="dropdown-item" href="?page=home"><span data-feather="arrow-right"></span> Författarlista</a>
+                    <a class="dropdown-item" href="?page=home"><span data-feather="arrow-right"></span> Regissörlista</a>
+                    <a class="dropdown-item" href="?page=home"><span data-feather="arrow-right"></span> Berättarlista</a>
+                    <a class="dropdown-item" href="?page=home"><span data-feather="arrow-right"></span> Genrelista</a>
+                </div>
               </li>
             </ul> <br>
             <div class="border-top">
