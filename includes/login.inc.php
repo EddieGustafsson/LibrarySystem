@@ -15,8 +15,11 @@ if (isset($_POST['submit'])){
         header("Location: ../login.php?login=empty");
         exit();
     } else{
-        $sql = "SELECT * FROM admin WHERE username='$username'";
-        $result = mysqli_query($conn, $sql);
+
+        $stmt = $conn->prepare("SELECT * FROM admin WHERE username = ?");
+        $stmt->bind_param("s", $username);
+        $stmt->execute();
+        $result = $stmt->get_result();
         $resultCheck = mysqli_num_rows($result);
         if($resultCheck < 1) {
             header("Location: ../login.php?login=error");
