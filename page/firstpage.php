@@ -11,6 +11,90 @@
   <h1 class="h2">Kontrollpanel</h1>
 </div>
 
+<div class="container-fluid" style="margin-bottom:70px;">
+    <div class="row">
+        <div class="col-sm">
+            <div class="shadow card bg-gradient-danger card-img-holder text-white">
+                  <div class="card-body">
+                    <img src="assets/img/circle.svg" class="card-img-absolute" alt="circle-image">
+                    <h4 class="font-weight-normal mb-3">Användare <span class="float-right" style="width: 32px; height: 32px;" data-feather="user"></span>
+                    </h4>
+                    <h2 class="mb-5 font-weight-bold">
+                        <?php 
+                            include('includes/dbh.inc.php');
+                            $sql = "SELECT * FROM users";
+                            $result = $conn->query($sql);
+                            if ($result->num_rows > 0) {
+                                echo $result->num_rows;
+                            }
+                            $conn->close();
+                        ?>
+                    </h2>
+                    <h6 class="card-text">Lorem ipsum</h6>
+                  </div>
+            </div>
+        </div>
+        <div class="col-sm">
+            <div class="shadow card bg-gradient-info card-img-holder text-white">
+                  <div class="card-body">
+                    <img src="assets/img/circle.svg" class="card-img-absolute" alt="circle-image">
+                    <h4 class="font-weight-normal mb-3">Medier <span class="float-right" style="width: 32px; height: 32px;" data-feather="archive"></span>
+                    </h4>
+                    <h2 class="mb-5 font-weight-bold">
+                        <?php 
+                            include('includes/dbh.inc.php');
+                            $sql = "SELECT item_id FROM media";
+                            $result = $conn->query($sql);
+                            if ($result->num_rows > 0) {
+                                echo $result->num_rows;
+                            }
+                            $conn->close();
+                        ?>
+                    </h2>
+                    <h6 class="card-text">Lorem ipsum</h6>
+                  </div>
+            </div>
+        </div>
+        <div class="col-sm">
+            <div class="shadow card bg-gradient-success card-img-holder text-white">
+                  <div class="card-body">
+                    <img src="assets/img/circle.svg" class="card-img-absolute" alt="circle-image">
+                    <h4 class="font-weight-normal mb-3">Lån <span class="float-right" style="width: 32px; height: 32px;" data-feather="eye"></span>
+                    </h4>
+                    <h2 class="mb-5 font-weight-bold">
+                        <?php 
+                            include('includes/dbh.inc.php');
+                            $sql = "SELECT item_id FROM borrowed";
+                            $result = $conn->query($sql);
+                            if ($result->num_rows > 0) {
+                                echo $result->num_rows;
+                            }
+                            $conn->close();
+                        ?>
+                    </h2>
+                    <h6 class="card-text">Lorem ipsum</h6>
+                  </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="container-fluid" style="margin-bottom:70px;">
+    <div class="row">
+        <div class="col-sm">
+            <div class="card shadow">
+                <div class="card-header">
+                    Featured
+                </div>
+                <div class="card-body">
+                    <h5 class="card-title">Special title treatment</h5>
+                    <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+                    <a href="#" class="btn btn-primary">Go somewhere</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 
 <div class="container-fluid">
 <div class="row">
