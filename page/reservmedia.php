@@ -14,15 +14,15 @@
 
 <div class="container-fluid">
     <div class="row">
-        <div class="col-sm" style="text-align: center;">
         
-        <form action="includes/add.php" method="POST">
-
-            <input type="hidden" name="function" value="addLoan">
-
-            <div style="margin-bottom:20px;">
-                <h4>1. Välj en användare</h4>
-                <i>Välj en användare nedan</i>
+        <div class="col-sm">
+            <div class="card h-100 shadow-sm">
+                <div class="card-header">
+                    <h4>1. Välj en användare</h4>
+                </div>
+                <div class="card-body">
+                <p><span data-feather="info"></span> Välj en användare nedan i listan nedan</p>
+                <hr>
                     <div style="margin-top:20px;">
                         <select class="selectpicker show-tick" name="user_id" id="user_id" data-live-search="true" data-width="auto">
                             <?php
@@ -39,51 +39,54 @@
                             ?>
                         </select>
                     </div>
+                </div>
             </div>
         </div>
-        <div class="col-sm" style="text-align: center;">
-            <div style="margin-bottom:20px;">
-                <h4>2. Välj media</h4>
-                <i>Skanna eller skriv in ett serienummer nedan</i>
+
+        <div class="col-sm">
+            <div class="card h-100 shadow-sm">
+                <div class="card-header">
+                    <h4>2. Välj media</h4>
+                </div>
+                <div class="card-body">
+                    <p><span data-feather="info"></span> Skanna eller skriv in ett serienummer nedan</p>
+                    <hr>
+                    <div class="input-group mb-3">
+                        <input type="text" name="item_id" class="form-control" placeholder="00870006044" maxlength="11" aria-label="item_id" aria-describedby="basic-addon1">
+                    </div>
+                </div>
             </div>
-            
-            <select name="item_id" id="item_id" class="selectpicker show-tick" data-live-search="true" data-width="auto">
-              <?php
-              include('includes/dbh.inc.php');
-              $sql = "SELECT item_id, title FROM media WHERE is_borrowed='1'";
-              $result = $conn->query($sql);
-              if ($result->num_rows > 0) {
-              while($row = $result->fetch_assoc()) {
-                  echo "<option value='". $row["item_id"] ."'>". $row["item_id"]." | ". $row["title"]."</option>";
-              }
-              echo "</table>";
-              } else { echo "0 resultat"; }
-              $conn->close();
-              ?>
-          </select><br><br>
-
         </div>
-        <div class="col-sm" style="text-align: center;">
-            <div style="margin-bottom:20px;">
-                <h4>3. Välj datum</h4>
-                <i>Välj bokningens datum</i>
+
+        <div class="col-sm">
+            <div class="card h-100 shadow-sm">
+                <div class="card-header">
+                    <h4>3. Välj datum</h4>
+                </div>
+                <div class="card-body">
+                    <p><span data-feather="info"></span> Välj bokningens datum</p>
+                    <hr>
+                    <p>Start datum (Dagens datum är <?php echo date("Y-m-d");?>):</p>
+                        <input type="date" name="start_date" id="start_date" value="<?php echo date("Y-m-d");?>"><br><br>
+
+                    <p>Slut datum:</p>
+                    <input type="date" name="end_date" id="end_date"><br><br>
+                </div>
             </div>
-            
-            <p>Start datum (Dagens datum är <?php echo date("Y-m-d");?>):</p>
-            <input type="date" name="start_date" id="start_date" value="<?php echo date("Y-m-d");?>"><br><br>
-
-            <p>Slut datum:</p>
-            <input type="date" name="end_date" id="end_date"><br><br>
-
         </div>
-        <div class="col-sm" style="text-align: center;">
-            <div style="margin-bottom:20px;">
-                <h4>4. Slutför bokning</h4>
-                <i>Klicka på knappen nedan för att slutföra bokningen</i>
+
+        <div class="col-sm">
+            <div class="card h-100 shadow-sm">
+                <div class="card-header">
+                    <h4>4. Slutför bokning</h4>
+                </div>
+                <div class="card-body">
+                    <p><span data-feather="info"></span> Klicka på knappen nedan för att slutföra bokningen</p>
+                    <hr>
+                    <input  value="Lägg till bokning" type="submit" class="btn btn-primary btn-lg">
+                </div>
             </div>
-            <input  value="Lägg till bokning" type="submit" class="btn btn-primary btn-lg">
-
-            </form>
         </div>
+        
     </div>
 </div>
