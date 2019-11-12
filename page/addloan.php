@@ -11,18 +11,21 @@
   <h1 class="h2">Gör ett lån</h1>
 </div>
 
+<form action="includes/add.php" method="POST">
+
+<input type="hidden" name="function" value="addLoan">
 
 <div class="container-fluid">
     <div class="row">
-        <div class="col-sm" style="text-align: center;">
         
-        <form action="includes/add.php" method="POST">
-
-            <input type="hidden" name="function" value="addLoan">
-
-            <div style="margin-bottom:20px;">
-                <h4>1. Välj en användare</h4>
-                <i>Välj en användare nedan</i>
+        <div class="col-sm">
+            <div class="card h-100 shadow-sm">
+                <div class="card-header">
+                    <h4>1. Välj en användare</h4>
+                </div>
+                <div class="card-body">
+                <p><span data-feather="info"></span> Välj en användare nedan i listan nedan</p>
+                <hr>
                     <div style="margin-top:20px;">
                         <select class="selectpicker show-tick" name="user_id" id="user_id" data-live-search="true" data-width="auto">
                             <?php
@@ -39,25 +42,39 @@
                             ?>
                         </select>
                     </div>
+                </div>
             </div>
         </div>
-        <div class="col-sm" style="text-align: center;">
-            <div style="margin-bottom:20px;">
-                <h4>2. Välj media</h4>
-                <i>Skanna eller skriv in ett serienummer nedan</i>
-            </div>
-            <div class="input-group mb-3">
-                <input type="text" name="item_id" class="form-control" placeholder="00870006044" maxlength="11" aria-label="item_id" aria-describedby="basic-addon1">
-            </div>
-        </div>
-        <div class="col-sm" style="text-align: center;">
-            <div style="margin-bottom:20px;">
-                <h4>3. Slutför lånet</h4>
-                <i>Klicka på knappen nedan för att slutföra lånet</i>
-            </div>
-            <input  value="Lägg till lån" type="submit" class="btn btn-primary btn-lg">
 
-            </form>
+        <div class="col-sm">
+            <div class="card h-100 shadow-sm">
+                <div class="card-header">
+                    <h4>2. Välj media</h4>
+                </div>
+                <div class="card-body">
+                    <p><span data-feather="info"></span> Skanna eller skriv in ett serienummer nedan</p>
+                    <hr>
+                    <div class="input-group mb-3">
+                        <input type="text" name="item_id" class="form-control" placeholder="00870006044" maxlength="11" aria-label="item_id" aria-describedby="basic-addon1">
+                    </div>
+                </div>
+            </div>
         </div>
+
+        <div class="col-sm">
+            <div class="card h-100 shadow-sm">
+                <div class="card-header">
+                    <h4>3. Slutför lånet</h4>
+                </div>
+                <div class="card-body">
+                    <p><span data-feather="info"></span> Klicka på knappen nedan för att slutföra lånet</p>
+                    <hr>
+                    <input  value="Lägg till lån" type="submit" class="btn btn-primary btn-lg">
+                </div>
+            </div>
+        </div>
+        
     </div>
 </div>
+
+</form>
