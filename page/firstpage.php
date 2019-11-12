@@ -84,12 +84,11 @@
         <div class="col-sm">
             <div class="card shadow">
                 <div class="card-header">
-                    Featured
+                    Test graph
                 </div>
                 <div class="card-body">
                     <h5 class="card-title">Special title treatment</h5>
-                    <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-                    <a href="#" class="btn btn-primary">Go somewhere</a>
+                    <canvas id="line-chart" width="500" height="150"></canvas>
                 </div>
             </div>
         </div>
