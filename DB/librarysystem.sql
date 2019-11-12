@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.8.5
+-- version 4.9.0.1
 -- https://www.phpmyadmin.net/
 --
 -- Värd: 127.0.0.1
--- Tid vid skapande: 27 sep 2019 kl 08:58
--- Serverversion: 10.1.38-MariaDB
--- PHP-version: 7.3.2
+-- Tid vid skapande: 12 nov 2019 kl 20:26
+-- Serverversion: 10.4.6-MariaDB
+-- PHP-version: 7.3.9
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -21,6 +21,27 @@ SET time_zone = "+00:00";
 --
 -- Databas: `librarysystem`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Tabellstruktur `admin`
+--
+
+CREATE TABLE `admin` (
+  `id` int(10) NOT NULL,
+  `username` varchar(50) NOT NULL,
+  `email` varchar(50) NOT NULL,
+  `password` varchar(256) NOT NULL,
+  `date` date DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumpning av Data i tabell `admin`
+--
+
+INSERT INTO `admin` (`id`, `username`, `email`, `password`, `date`) VALUES
+(1, 'admin', 'admin@admin.com', '$2y$10$UQclJc8sk7inWTonpiG3OuTMhatmiX/8bq/S4nS0ZD/YzUmk4XEo6', '2019-10-28');
 
 -- --------------------------------------------------------
 
@@ -86,6 +107,16 @@ CREATE TABLE `borrowed` (
   `end_date` date NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Dumpning av Data i tabell `borrowed`
+--
+
+INSERT INTO `borrowed` (`user_id`, `item_id`, `start_date`, `end_date`) VALUES
+('195607167367', '00870001998', '2019-10-01', '2019-10-22'),
+('196608251010', '00870001794', '2019-10-01', '2019-10-22'),
+('198211148328', '00870009999', '2019-10-01', '2019-10-22'),
+('199211305736', '00870006516', '2019-10-01', '2019-10-22'),
+('200111119999', '00870001794', '2019-10-01', '2019-10-22');
 
 -- --------------------------------------------------------
 
@@ -216,20 +247,20 @@ CREATE TABLE `media` (
 
 INSERT INTO `media` (`item_id`, `title`, `cat_id`, `genre_id`, `is_borrowed`) VALUES
 ('00870001557', 'Jonas Trolle: Jakten på Kapten klänning', 2, 5, 0),
-('00870001794', '1794', 1, 6, 0),
+('00870001794', '1794', 1, 6, 1),
 ('00870001802', 'Institutet', 1, 7, 0),
-('00870001997', 'Harry Potter och de vises sten', 1, 1, 1),
+('00870001997', 'Harry Potter och de vises sten', 1, 1, 0),
 ('00870001998', 'Harry Potter och hemligheternas kammare', 1, 1, 0),
 ('00870001999', 'Harry Potter och fången från Azkaban', 1, 1, 0),
 ('00870002000', 'Harry Potter och den flammande bägaren', 1, 1, 0),
-('00870002003', 'Harry Potter och Fenixorden', 1, 1, 0),
+('00870002003', 'Harry Potter och Fenixorden', 1, 1, 1),
 ('00870002005', 'Harry Potter och halvblodsprinsen', 1, 1, 0),
 ('00870002007', 'Harry Potter och dödsrelikerna', 1, 1, 0),
-('00870006044', 'Sagan om Koungens återkomst', 2, 1, 1),
+('00870006044', 'Sagan om Koungens återkomst', 2, 1, 0),
 ('00870006516', 'Roslning:Factfulness', 2, 5, 0),
 ('00870009053', 'Chrouching Tiger Hidden Dragon', 3, 1, 0),
-('00870009789', 'Folkvandringstid', 1, 5, 0),
-('00870009999', 'Joker (2019)', 3, 2, 0);
+('00870009789', 'Folkvandringstid', 1, 5, 1),
+('00870009999', 'Joker (2019)', 3, 2, 1);
 
 -- --------------------------------------------------------
 
@@ -272,7 +303,6 @@ CREATE TABLE `roles` (
 --
 
 INSERT INTO `roles` (`role_id`, `role_name`, `create`, `edit`, `remove`, `borrow`) VALUES
-(4, 'Admin', 1, 1, 1, 1),
 (5, 'Lärare', 0, 0, 0, 1),
 (6, 'Elev', 0, 0, 0, 0);
 
@@ -295,11 +325,21 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`user_id`, `firstname`, `lastname`, `role_id`, `date`) VALUES
+('195607167367', 'Augusta', 'Wennerberg', 4, '2019-10-01'),
+('196608251010', 'Finn', 'Lindmark', 6, '2019-10-01'),
+('198211148328', 'Pernilla', 'Stenman', 6, '2019-10-01'),
+('199211305736', 'Torkel', 'Mattiasson', 6, '2019-10-01'),
 ('200111119999', 'Test', 'Person', 5, '2019-09-26');
 
 --
 -- Index för dumpade tabeller
 --
+
+--
+-- Index för tabell `admin`
+--
+ALTER TABLE `admin`
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Index för tabell `authors`
@@ -376,6 +416,12 @@ ALTER TABLE `users`
 --
 -- AUTO_INCREMENT för dumpade tabeller
 --
+
+--
+-- AUTO_INCREMENT för tabell `admin`
+--
+ALTER TABLE `admin`
+  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT för tabell `authors`
