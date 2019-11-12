@@ -44,24 +44,24 @@ if(!isset($_SESSION['login_user'])){
 
     <div class="container-fluid">
       <div class="row">
-        <nav class="col-md-2 d-none d-md-block bg-light sidebar">
+        <nav class="shadow p-3 mb-5 bg-white rounded col-md-2 d-none d-md-block bg-light sidebar">
           <div class="sidebar-sticky">
             <ul class="nav flex-column">
             <li class="nav-item">
-                <a class="nav-link" href="#dashboard">
+                <a class="nav-link" href="?page=home">
                   <span data-feather="home"></span>
                   Dashboard
                 </a>
               </li>
               <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <a class="nav-link dropdown-toggle" href="#user_collapse" id="navbarDropdownMenuLink" data-toggle="collapse" aria-haspopup="true" aria-expanded="false">
                     <span data-feather="users"></span>
                     Användare
                 </a>
-                <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                    <a class="dropdown-item" href="?page=addloan">Gör ett lån</a>
-                    <a class="dropdown-item" href="?page=endloan">Avsluta ett lån</a>
-                    <a class="dropdown-item" href="?page=reservmedia">Gör en bokning</a>
+                <div class="panel-collapse collapse" id="user_collapse" aria-labelledby="navbarDropdownMenuLink">
+                    <a class="dropdown-item" href="?page=addloan"><span data-feather="arrow-right"></span> Gör ett lån</a>
+                    <a class="dropdown-item" href="?page=endloan"><span data-feather="arrow-right"></span> Avsluta ett lån</a>
+                    <a class="dropdown-item" href="?page=reservmedia"><span data-feather="arrow-right"></span> Gör en bokning</a>
                 </div>
             </li>
               <li class="nav-item">
