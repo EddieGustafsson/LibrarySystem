@@ -14,23 +14,34 @@
 
 <div class="container-fluid">
     <div class="row">
-        <div class="col-sm" style="text-align: center;">
-            <div style="margin-bottom:20px;">
-                <h4>1. Välj media</h4>
-                <i>Skanna eller skriv in ett serienummer nedan</i>
-            </div>
-            <div class="input-group mb-3 col-xs-3" >
-                <input type="text" name="item_id" class="form-control" placeholder="00870006044" maxlength="11" aria-label="item_id" aria-describedby="basic-addon1">
-            </div>
-        </div>
-        <div class="col-sm" style="text-align: center;">
-            <div style="margin-bottom:20px;">
-                <h4>2. Avsluta lånet</h4>
-                <i>Klicka på knappen nedan för att avsluta lånet</i>
-            </div>
-            <input  value="Avsluta" type="submit" class="btn btn-primary btn-lg">
 
-            </form>
+        <div class="col-sm">
+            <div class="card h-100 shadow-sm">
+                <div class="card-header">
+                    <h4>1. Välj media</h4>
+                </div>
+                <div class="card-body">
+                    <p><span data-feather="info"></span> Skanna eller skriv in ett serienummer nedan</p>
+                    <hr>
+                    <div class="input-group mb-3">
+                        <input type="text" name="item_id" class="form-control" placeholder="00870006044" maxlength="11" aria-label="item_id" aria-describedby="basic-addon1">
+                    </div>
+                </div>
+            </div>
         </div>
+
+        <div class="col-sm">
+            <div class="card h-100 shadow-sm">
+                <div class="card-header">
+                    <h4>2. Avsluta lånet</h4>
+                </div>
+                <div class="card-body">
+                    <p><span data-feather="info"></span> Klicka på knappen nedan för att avsluta lånet</p>
+                    <hr>
+                    <input  value="Avsluta" type="submit" class="btn btn-primary btn-lg">
+                </div>
+            </div>
+        </div>
+        
     </div>
 </div>
