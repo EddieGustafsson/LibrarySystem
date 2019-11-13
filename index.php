@@ -50,7 +50,7 @@ if(!isset($_SESSION['login_user'])){
             <li class="nav-item">
                 <a class="nav-link" href="?page=home">
                   <span data-feather="home"></span>
-                  Dashboard
+                  Kontrollpanel
                 </a>
               </li>
               <li class="nav-item dropdown">
